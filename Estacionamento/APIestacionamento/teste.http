@@ -1,0 +1,45 @@
+### Testar a raiz do projeto
+GET http://localhost:5122
+
+### Listar carros
+GET http://localhost:5122/api/carros/listar
+
+### Buscar um carro pelo id
+GET http://localhost:5122/api/carros/buscar/1
+
+### Deletar um carro pelo id
+DELETE  http://localhost:5122/api/carros/deletar/2
+
+### Cadastrar carro
+POST http://localhost:5122/api/carros/cadastrar
+Content-Type: application/json
+
+{
+    "placa": "ATR2655",
+    "marca": "Suzuki",
+    "modelo": "Gran Vitara",
+    "cor": "Preto",
+    "vagaId": 5
+}
+
+### Alterar carro
+PUT http://localhost:5122/api/carros/alterar/2
+Content-Type: application/json
+
+{
+    "placa": "ABC123",
+    "marca": "Chevrolet",
+    "modelo": "Montana",
+    "cor": "Branco"
+}
+
+### Cadastrar vaga
+POST http://localhost:5122/api/vagas/cadastrar
+Content-Type: application/json
+
+{
+    "numero": "A5"
+}
+
+### Listar vagas
+GET http://localhost:5122/api/vagas/listar
