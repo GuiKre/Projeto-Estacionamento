@@ -8,4 +8,5 @@ public class Cliente
     public string? Email { get; set; }
 
     public List<Carro> Carros { get; set; } = new();
+    public List<Recibo> Recibos { get; set; } = new();
 }

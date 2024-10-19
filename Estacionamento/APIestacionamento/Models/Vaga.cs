@@ -9,6 +9,6 @@ public class Vaga
 
 
     [JsonIgnore]
-    public Carro? carro {get; set; }
-    public List<Carro> Carros { get; set; } = new();
+    public List<Carro> Carros { get; set; } = new List<Carro>();
+    public List<Recibo> Recibos { get; set; } = new List<Recibo>();
 }

@@ -8,7 +8,7 @@ GET http://localhost:5122/api/carros/listar
 GET http://localhost:5122/api/carros/buscar/1
 
 ### Deletar um carro pelo id
-DELETE  http://localhost:5122/api/carros/deletar/2
+DELETE  http://localhost:5122/api/carros/deletar/1
 
 ### Cadastrar Cliente
 POST http://localhost:5122/api/clientes/cadastrar
@@ -31,7 +31,7 @@ Content-Type: application/json
     "modelo": "Gran Vitara",
     "cor": "Preto",
     "vagaId": 1,
-    "clienteId": 0
+    "clienteId": 5
 }
 
 ### Alterar carro
@@ -50,7 +50,7 @@ POST http://localhost:5122/api/vagas/cadastrar
 Content-Type: application/json
 
 {
-    "numero": "A5"
+    "numero": "A1"
 }
 
 ### Listar vagas
