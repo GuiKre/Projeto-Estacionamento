@@ -1,6 +1,7 @@
 using System.Resources;
 using APIestacionamento.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDataContext>();
@@ -116,6 +117,47 @@ app.MapGet("/api/vagas/listar", ([FromServices] AppDataContext ctx) =>
     if(ctx.Vagas.Any())
     {
         return Results.Ok(ctx.Vagas.ToList());
+    }
+    return Results.NotFound();
+});
+
+app.MapPost("/api/recibos/cadastrar/{vagaId}", (int vagaId, [FromServices] AppDataContext ctx) =>{
+
+    var vaga = ctx.Vagas.Find(vagaId);
+    if(vaga == null){
+        return Results.NotFound();
+    }
+
+    var carro = ctx.Carros
+                        .Include(c => c.Cliente)
+                       .FirstOrDefault(c => c.VagaId == vagaId);
+
+    if (carro == null)
+    {
+        return Results.NotFound();
+    }
+
+    var dataSaida = DateTime.Now;
+    TimeSpan duracao = dataSaida - carro.DataChegada;
+    decimal valorTotal = (decimal)duracao.TotalHours * 5;
+
+    var novoRecibo = new Recibo{
+        ClienteId = carro.ClienteId,
+        CarroId = carro.CarroId,
+        VagaId = vaga.VagaId,
+        DataChegada = carro.DataChegada,
+        HoraSaida = dataSaida,
+        ValorTotal = valorTotal,
+    };
+
+    ctx.Recibos.Add(novoRecibo);
+    ctx.SaveChanges();
+    return Results.Created("", novoRecibo);
+});
+
+app.MapGet("/api/recibos/listar", ([FromServices] AppDataContext ctx) => {
+    if(ctx.Recibos.Any()){
+        return Results.Ok(ctx.Recibos.ToList());
     }
     return Results.NotFound();
 });

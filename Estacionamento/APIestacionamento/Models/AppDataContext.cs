@@ -6,7 +6,9 @@ public class AppDataContext : DbContext
 {
     public DbSet<Carro> Carros { get; set; }
     public DbSet<Vaga> Vagas { get; set; }
-    public DbSet<Cliente> Clientes{ get; set; }
+    public DbSet<Cliente> Clientes { get; set; }
+
+    public DbSet<Recibo> Recibos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -15,10 +17,10 @@ public class AppDataContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-       modelBuilder.Entity<Carro>()
-            .HasOne(c => c.vaga)
-            .WithMany(v => v.Carros) // Muda de WithOne para WithMany
-            .HasForeignKey(c => c.VagaId);
+        modelBuilder.Entity<Carro>()
+             .HasOne(c => c.vaga)
+             .WithMany(v => v.Carros) // Muda de WithOne para WithMany
+             .HasForeignKey(c => c.VagaId);
 
         modelBuilder.Entity<Carro>()
             .HasOne(c => c.Cliente)

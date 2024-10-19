@@ -79,6 +79,44 @@ namespace APIestacionamento.Migrations
                     b.ToTable("Clientes");
                 });
 
+            modelBuilder.Entity("APIestacionamento.Models.Recibo", b =>
+                {
+                    b.Property<int>("ReciboId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("CarroId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ClienteId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DataChegada")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("HoraSaida")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("VagaId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("ValorHora")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("ValorTotal")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ReciboId");
+
+                    b.HasIndex("CarroId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("VagaId");
+
+                    b.ToTable("Recibos");
+                });
+
             modelBuilder.Entity("APIestacionamento.Models.Vaga", b =>
                 {
                     b.Property<int>("VagaId")
@@ -114,6 +152,27 @@ namespace APIestacionamento.Migrations
                     b.Navigation("Cliente");
 
                     b.Navigation("vaga");
+                });
+
+            modelBuilder.Entity("APIestacionamento.Models.Recibo", b =>
+                {
+                    b.HasOne("APIestacionamento.Models.Carro", "Carro")
+                        .WithMany()
+                        .HasForeignKey("CarroId");
+
+                    b.HasOne("APIestacionamento.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId");
+
+                    b.HasOne("APIestacionamento.Models.Vaga", "Vaga")
+                        .WithMany()
+                        .HasForeignKey("VagaId");
+
+                    b.Navigation("Carro");
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Vaga");
                 });
 
             modelBuilder.Entity("APIestacionamento.Models.Cliente", b =>
