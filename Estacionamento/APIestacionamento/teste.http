@@ -61,5 +61,5 @@ GET http://localhost:5122/api/vagas/listar
 GET http://localhost:5122/api/clientes/listar
 
 ### Cadastrar um recibo
-POST http://localhost:5122/api/recibo/cadastrar/3
+POST http://localhost:5122/api/recibo/cadastrar/1
 Content-Type: application/json

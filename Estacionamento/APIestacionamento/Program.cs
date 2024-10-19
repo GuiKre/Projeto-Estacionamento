@@ -121,7 +121,7 @@ app.MapGet("/api/vagas/listar", ([FromServices] AppDataContext ctx) =>
     return Results.NotFound();
 });
 
-app.MapPost("/api/recibos/cadastrar/{vagaId}", (int vagaId, [FromServices] AppDataContext ctx) =>{
+app.MapPost("/api/recibos/cadastrar/{vagaId}", ([FromRoute] int vagaId, [FromServices] AppDataContext ctx) =>{
 
     var vaga = ctx.Vagas.Find(vagaId);
     if(vaga == null){
