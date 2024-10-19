@@ -8,20 +8,49 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Projeto Estacionamento");
 
-app.MapPost("/api/carros/cadastrar", ([FromBody] Carro carro,
-    [FromServices] AppDataContext ctx) => 
+app.MapPost("/api/carros/cadastrar", ([FromBody] Carro carro, [FromServices] AppDataContext ctx) => 
 {
     var vaga = ctx.Vagas.Find(carro.VagaId);
+    var cliente = ctx.Clientes.Find(carro.ClienteId); // Verifique se o cliente existe
 
     if (vaga == null)
     {
-        return Results.BadRequest("A vaga espeificada não existe.");
+        return Results.BadRequest("A vaga especificada não existe.");
+    }
+
+    if (cliente == null)
+    {
+        return Results.BadRequest("O cliente especificado não existe.");
     }
 
     ctx.Carros.Add(carro);
     ctx.SaveChanges();
     return Results.Created("", carro);
 });
+
+app.MapPost("/api/clientes/cadastrar", ([FromBody] Cliente cliente,
+    [FromServices] AppDataContext ctx) => 
+{
+     try
+    {
+        ctx.Clientes.Add(cliente);
+        return Results.Created("", cliente);
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message); // Retorna a mensagem de erro
+    }
+});
+
+app.MapGet("/api/clientes/listar", ([FromServices] AppDataContext ctx) => 
+{
+    if(ctx.Clientes.Any())
+    {
+        return Results.Ok(ctx.Clientes.ToList());
+    }
+    return Results.NotFound();
+});
+
 
 app.MapGet("/api/carros/buscar/{id}", ([FromRoute] int id, 
     [FromServices] AppDataContext ctx) => 

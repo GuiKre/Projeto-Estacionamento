@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIestacionamento.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20241015213301_AdicionarRelacaoUmParaUmCarroVaga")]
-    partial class AdicionarRelacaoUmParaUmCarroVaga
+    [Migration("20241019024315_AddCLientesTable")]
+    partial class AddCLientesTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,9 @@ namespace APIestacionamento.Migrations
                 {
                     b.Property<int>("CarroId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ClienteId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Cor")
@@ -46,10 +49,32 @@ namespace APIestacionamento.Migrations
 
                     b.HasKey("CarroId");
 
+                    b.HasIndex("ClienteId");
+
                     b.HasIndex("VagaId")
                         .IsUnique();
 
                     b.ToTable("Carros");
+                });
+
+            modelBuilder.Entity("APIestacionamento.Models.Cliente", b =>
+                {
+                    b.Property<int>("ClienteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Telefone")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ClienteId");
+
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("APIestacionamento.Models.Vaga", b =>
@@ -68,13 +93,26 @@ namespace APIestacionamento.Migrations
 
             modelBuilder.Entity("APIestacionamento.Models.Carro", b =>
                 {
+                    b.HasOne("APIestacionamento.Models.Cliente", "Cliente")
+                        .WithMany("Carros")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("APIestacionamento.Models.Vaga", "vaga")
                         .WithOne("carro")
                         .HasForeignKey("APIestacionamento.Models.Carro", "VagaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Cliente");
+
                     b.Navigation("vaga");
+                });
+
+            modelBuilder.Entity("APIestacionamento.Models.Cliente", b =>
+                {
+                    b.Navigation("Carros");
                 });
 
             modelBuilder.Entity("APIestacionamento.Models.Vaga", b =>

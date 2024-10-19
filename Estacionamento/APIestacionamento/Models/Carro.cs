@@ -11,6 +11,9 @@ public class Carro
     public string? Cor {get; set; }
     public DateTime DataChegada {get; set; } = DateTime.Now;
 
+    public int ClienteId { get; set; }
+    public Cliente? Cliente { get; set; }
+
 
     [JsonIgnore]
     public Vaga? vaga {get; set; }
