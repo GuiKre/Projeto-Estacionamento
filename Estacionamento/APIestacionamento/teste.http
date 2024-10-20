@@ -8,7 +8,8 @@ Content-Type: application/json
 {
     "nome": "malaquias",
     "telefone": "+12341243456",
-    "email": "teste@gmail.com"
+    "email": "teste@gmail.com",
+    "CarroId": 6
 }
 
 ### Listar Clientes
@@ -65,8 +66,8 @@ POST http://localhost:5122/api/recibos/cadastrar
 Content-Type: application/json
 
 {
-  "clienteId": 1,
-  "carroId": 1
+  "clienteId": 2,
+  "carroId": 4
 }
 
 ### Listar todos os recibos
