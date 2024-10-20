@@ -17,18 +17,14 @@ public class AppDataContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Carro>()
-            .HasOne(c => c.Vaga)
-            .WithMany(v => v.Carros)
-            .HasForeignKey(c => c.VagaId);
+            .HasOne(c =>c.vaga)
+            .WithOne(v => v.carro)
+            .HasForeignKey<Carro>(c => c.VagaId);
 
-        modelBuilder.Entity<Carro>()
-            .HasOne(c => c.Cliente)
-            .WithMany(cliente => cliente.Carros)
-            .HasForeignKey(c => c.ClienteId);
-        
         modelBuilder.Entity<Cliente>()
-            .Property(c => c.ClienteId)
-            .ValueGeneratedOnAdd(); 
+            .HasOne(cl => cl.Carro)
+            .WithOne(c => c.cliente)
+            .HasForeignKey<Cliente>(cl => cl.CarroId);
 
         modelBuilder.Entity<Recibo>()
             .HasOne(r => r.Cliente)
@@ -37,12 +33,7 @@ public class AppDataContext : DbContext
 
         modelBuilder.Entity<Recibo>()
             .HasOne(r => r.Carro)
-            .WithMany(c => c.Recibos)
+            .WithMany()
             .HasForeignKey(r => r.CarroId);
-
-        modelBuilder.Entity<Recibo>()
-            .HasOne(r => r.Vaga)
-            .WithMany(v => v.Recibos)
-            .HasForeignKey(r => r.VagaId);
     }
 }

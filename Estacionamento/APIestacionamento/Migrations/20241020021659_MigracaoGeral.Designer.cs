@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIestacionamento.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20241019183644_AddCarrosToVaga")]
-    partial class AddCarrosToVaga
+    [Migration("20241020021659_MigracaoGeral")]
+    partial class MigracaoGeral
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,9 +24,6 @@ namespace APIestacionamento.Migrations
                 {
                     b.Property<int>("CarroId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ClienteId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Cor")
@@ -49,9 +46,8 @@ namespace APIestacionamento.Migrations
 
                     b.HasKey("CarroId");
 
-                    b.HasIndex("ClienteId");
-
-                    b.HasIndex("VagaId");
+                    b.HasIndex("VagaId")
+                        .IsUnique();
 
                     b.ToTable("Carros");
                 });
@@ -60,6 +56,9 @@ namespace APIestacionamento.Migrations
                 {
                     b.Property<int>("ClienteId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CarroId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
@@ -72,6 +71,9 @@ namespace APIestacionamento.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("ClienteId");
+
+                    b.HasIndex("CarroId")
+                        .IsUnique();
 
                     b.ToTable("Clientes");
                 });
@@ -88,16 +90,7 @@ namespace APIestacionamento.Migrations
                     b.Property<int>("ClienteId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DataChegada")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("HoraSaida")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("VagaId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("ValorHora")
+                    b.Property<DateTime>("DataCriacao")
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("ValorTotal")
@@ -108,8 +101,6 @@ namespace APIestacionamento.Migrations
                     b.HasIndex("CarroId");
 
                     b.HasIndex("ClienteId");
-
-                    b.HasIndex("VagaId");
 
                     b.ToTable("Recibos");
                 });
@@ -130,27 +121,30 @@ namespace APIestacionamento.Migrations
 
             modelBuilder.Entity("APIestacionamento.Models.Carro", b =>
                 {
-                    b.HasOne("APIestacionamento.Models.Cliente", "Cliente")
-                        .WithMany("Carros")
-                        .HasForeignKey("ClienteId")
+                    b.HasOne("APIestacionamento.Models.Vaga", "vaga")
+                        .WithOne("carro")
+                        .HasForeignKey("APIestacionamento.Models.Carro", "VagaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("APIestacionamento.Models.Vaga", "Vaga")
-                        .WithMany("Carros")
-                        .HasForeignKey("VagaId")
+                    b.Navigation("vaga");
+                });
+
+            modelBuilder.Entity("APIestacionamento.Models.Cliente", b =>
+                {
+                    b.HasOne("APIestacionamento.Models.Carro", "Carro")
+                        .WithOne("cliente")
+                        .HasForeignKey("APIestacionamento.Models.Cliente", "CarroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Vaga");
+                    b.Navigation("Carro");
                 });
 
             modelBuilder.Entity("APIestacionamento.Models.Recibo", b =>
                 {
                     b.HasOne("APIestacionamento.Models.Carro", "Carro")
-                        .WithMany("Recibos")
+                        .WithMany()
                         .HasForeignKey("CarroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -161,36 +155,24 @@ namespace APIestacionamento.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("APIestacionamento.Models.Vaga", "Vaga")
-                        .WithMany("Recibos")
-                        .HasForeignKey("VagaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Carro");
 
                     b.Navigation("Cliente");
-
-                    b.Navigation("Vaga");
                 });
 
             modelBuilder.Entity("APIestacionamento.Models.Carro", b =>
                 {
-                    b.Navigation("Recibos");
+                    b.Navigation("cliente");
                 });
 
             modelBuilder.Entity("APIestacionamento.Models.Cliente", b =>
                 {
-                    b.Navigation("Carros");
-
                     b.Navigation("Recibos");
                 });
 
             modelBuilder.Entity("APIestacionamento.Models.Vaga", b =>
                 {
-                    b.Navigation("Carros");
-
-                    b.Navigation("Recibos");
+                    b.Navigation("carro");
                 });
 #pragma warning restore 612, 618
         }

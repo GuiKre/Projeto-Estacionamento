@@ -11,11 +11,11 @@ public class Carro
     public string? Cor {get; set; }
     public DateTime DataChegada {get; set; } = DateTime.Now;
 
-    public int ClienteId { get; set; }
-    public Cliente? Cliente { get; set; }
-    public List<Recibo> Recibos { get; set; } = new List<Recibo>();
 
     [JsonIgnore]
-    public Vaga? Vaga {get; set; }
+    public Vaga? vaga {get; set; }
     public int VagaId {get; set; }
+
+    public Cliente? cliente {get; set; }
+    
 }
