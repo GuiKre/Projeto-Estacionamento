@@ -16,7 +16,7 @@ var app = builder.Build();
 app.MapGet("/", () => "Projeto Estacionamento");
 
 app.MapPost("/api/carros/cadastrar", ([FromBody] Carro carro,
-    [FromServices] AppDataContext ctx) => 
+    [FromServices] AppDataContext ctx) =>
 {
     var vaga = ctx.Vagas.Find(carro.VagaId);
 
@@ -31,7 +31,7 @@ app.MapPost("/api/carros/cadastrar", ([FromBody] Carro carro,
 });
 
 app.MapPost("/api/clientes/cadastrar", ([FromBody] Cliente cliente,
-    [FromServices] AppDataContext ctx) => 
+    [FromServices] AppDataContext ctx) =>
 {
     var carro = ctx.Carros.Find(cliente.CarroId);
     if (carro == null)
@@ -45,7 +45,7 @@ app.MapPost("/api/clientes/cadastrar", ([FromBody] Cliente cliente,
 });
 
 app.MapPost("/api/recibos/cadastrar", ([FromBody] Recibo recibo,
-    [FromServices] AppDataContext ctx) => 
+    [FromServices] AppDataContext ctx) =>
 {
     var cliente = ctx.Clientes.Find(recibo.ClienteId);
     if (cliente == null)
@@ -76,28 +76,28 @@ app.MapPost("/api/recibos/cadastrar", ([FromBody] Recibo recibo,
     return Results.Created("", recibo);
 });
 
-app.MapGet("/api/carros/buscar/{id}", ([FromRoute] int id, 
-    [FromServices] AppDataContext ctx) => 
+app.MapGet("/api/carros/buscar/{id}", ([FromRoute] int id,
+    [FromServices] AppDataContext ctx) =>
 {
     Carro? carro = ctx.Carros.Find(id);
-    if(carro is null)
+    if (carro is null)
     {
         return Results.NotFound();
     }
     return Results.Ok(carro);
 });
 
-app.MapGet("/api/carros/listar", ([FromServices] AppDataContext ctx) => 
+app.MapGet("/api/carros/listar", ([FromServices] AppDataContext ctx) =>
 {
-        var carrosComClientes = ctx.Carros
-            .Include(c => c.cliente)
-            .ToList();
-        
-        if(carrosComClientes.Any())
-        {
-            return Results.Ok(carrosComClientes);
-        }
-    
+    var carrosComClientes = ctx.Carros
+        .Include(c => c.cliente)
+        .ToList();
+
+    if (carrosComClientes.Any())
+    {
+        return Results.Ok(carrosComClientes);
+    }
+
     return Results.NotFound();
 });
 
@@ -130,11 +130,11 @@ app.MapGet("/api/recibos/listar", ([FromServices] AppDataContext ctx) =>
     return Results.NotFound();
 });
 
-app.MapDelete("/api/carros/deletar/{id}", ([FromRoute] int id, 
-    [FromServices] AppDataContext ctx) => 
+app.MapDelete("/api/carros/deletar/{id}", ([FromRoute] int id,
+    [FromServices] AppDataContext ctx) =>
 {
     Carro? carro = ctx.Carros.Find(id);
-    if(carro is null)
+    if (carro is null)
     {
         return Results.NotFound();
     }
@@ -145,10 +145,10 @@ app.MapDelete("/api/carros/deletar/{id}", ([FromRoute] int id,
 
 app.MapPut("/api/carros/alterar/{id}", ([FromRoute] int id,
     [FromBody] Carro carroAlterado,
-    [FromServices] AppDataContext ctx) => 
+    [FromServices] AppDataContext ctx) =>
 {
     Carro? carro = ctx.Carros.Find(id);
-    if(carro is null)
+    if (carro is null)
     {
         return Results.NotFound();
     }
@@ -162,16 +162,16 @@ app.MapPut("/api/carros/alterar/{id}", ([FromRoute] int id,
 });
 
 app.MapPost("/api/vagas/cadastrar", ([FromBody] Vaga vaga,
-    [FromServices] AppDataContext ctx) => 
+    [FromServices] AppDataContext ctx) =>
 {
     ctx.Vagas.Add(vaga);
     ctx.SaveChanges();
     return Results.Created("", vaga);
 });
 
-app.MapGet("/api/vagas/listar", ([FromServices] AppDataContext ctx) => 
+app.MapGet("/api/vagas/listar", ([FromServices] AppDataContext ctx) =>
 {
-    if(ctx.Vagas.Any())
+    if (ctx.Vagas.Any())
     {
         return Results.Ok(ctx.Vagas.ToList());
     }
