@@ -1,19 +1,13 @@
 ### Testar a raiz do projeto
 GET http://localhost:5122
 
-### Cadastrar Cliente
-POST http://localhost:5122/api/clientes/cadastrar
+### Cadastrar vaga
+POST http://localhost:5122/api/vagas/cadastrar
 Content-Type: application/json
 
 {
-    "nome": "malaquias",
-    "telefone": "+12341243456",
-    "email": "teste@gmail.com",
-    "CarroId": 10
+    "numero": "A1"
 }
-
-### Listar Clientes
-GET http://localhost:5122/api/clientes/listar
 
 ### Cadastrar carro
 POST http://localhost:5122/api/carros/cadastrar
@@ -25,20 +19,49 @@ Content-Type: application/json
     "marca": "Suzuki",
     "modelo": "Gran Vitara",
     "cor": "Preto",
-    "vagaId": 29
+    "vagaId": 1
 }
+
+### Cadastrar Cliente
+POST http://localhost:5122/api/clientes/cadastrar
+Content-Type: application/json
+
+{
+    "nome": "João",
+    "telefone": "+12341243456",
+    "email": "joao@gmail.com",
+    "CarroId": 1
+}
+
+### Gerar um recibo
+POST http://localhost:5122/api/recibos/cadastrar
+Content-Type: application/json
+
+{
+  "clienteId": 1,
+  "carroId": 1
+}
+
+### Listar vagas
+GET http://localhost:5122/api/vagas/listar
 
 ### Listar carros
 GET http://localhost:5122/api/carros/listar
 
+### Listar clientes
+GET http://localhost:5122/api/clientes/listar
+
+### Listar recibos
+GET http://localhost:5122/api/recibos/listar
+
 ### Buscar um carro pelo id
-GET http://localhost:5122/api/carros/buscar/1
+GET http://localhost:5122/api/carros/buscar/3
 
 ### Deletar um carro pelo id
-DELETE  http://localhost:5122/api/carros/deletar/2
+DELETE  http://localhost:5122/api/carros/deletar/1
 
 ### Alterar carro
-PUT http://localhost:5122/api/carros/alterar/2
+PUT http://localhost:5122/api/carros/alterar/1
 Content-Type: application/json
 
 {
@@ -47,27 +70,3 @@ Content-Type: application/json
     "modelo": "Montana",
     "cor": "Branco"
 }
-
-### Cadastrar vaga
-POST http://localhost:5122/api/vagas/cadastrar
-Content-Type: application/json
-
-{
-    "numero": "A1"
-}
-
-### Listar vagas
-GET http://localhost:5122/api/vagas/listar
-
-
-### Cadastrar um recibo
-POST http://localhost:5122/api/recibos/cadastrar
-Content-Type: application/json
-
-{
-  "clienteId": 4,
-  "carroId": 9
-}
-
-### Listar todos os recibos
-GET http://localhost:5122/api/recibos/listar
