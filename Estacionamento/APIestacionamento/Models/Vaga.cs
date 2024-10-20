@@ -9,5 +9,5 @@ public class Vaga
 
 
     [JsonIgnore]
-    public Carro? carro {get; set; }
+    public Carro? Carro {get; set; }
 }

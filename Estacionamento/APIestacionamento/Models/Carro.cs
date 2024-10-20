@@ -16,6 +16,6 @@ public class Carro
     public Vaga? vaga {get; set; }
     public int VagaId {get; set; }
 
-    public Cliente? cliente {get; set; }
+    public Cliente? Cliente {get; set; }
     
 }
