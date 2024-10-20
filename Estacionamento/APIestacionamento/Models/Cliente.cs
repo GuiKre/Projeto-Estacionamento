@@ -10,11 +10,11 @@ public class Cliente
     public string? Telefone { get; set; }
     public string? Email { get; set; }
 
+    public int CarroId { get; set;}
 
     [JsonIgnore]
     public Carro? Carro {get; set; }
-    public int CarroId { get; set;}
     
-    
-    public virtual ICollection<Recibo> Recibos { get; set;} = new List<Recibo>();
+    //[JsonIgnore] 
+    public ICollection<Recibo> Recibos { get; set;} = new List<Recibo>();
 }

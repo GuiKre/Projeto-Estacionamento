@@ -9,7 +9,7 @@ Content-Type: application/json
     "nome": "malaquias",
     "telefone": "+12341243456",
     "email": "teste@gmail.com",
-    "CarroId": 6
+    "CarroId": 10
 }
 
 ### Listar Clientes
@@ -25,8 +25,7 @@ Content-Type: application/json
     "marca": "Suzuki",
     "modelo": "Gran Vitara",
     "cor": "Preto",
-    "vagaId": 9,
-    "clienteId": 3
+    "vagaId": 29
 }
 
 ### Listar carros
@@ -66,8 +65,8 @@ POST http://localhost:5122/api/recibos/cadastrar
 Content-Type: application/json
 
 {
-  "clienteId": 2,
-  "carroId": 4
+  "clienteId": 4,
+  "carroId": 9
 }
 
 ### Listar todos os recibos

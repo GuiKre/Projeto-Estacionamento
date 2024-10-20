@@ -12,8 +12,10 @@ public class Recibo
     [JsonIgnore]
     public Cliente? Cliente { get; set;}
     public int ClienteId { get; set;}
-    public Carro? Carro { get; set; }
     public int CarroId { get; set; }
+
+    [JsonIgnore]
+    public Carro? Carro { get; set; }
     
     public void CalcularValor()
     {
