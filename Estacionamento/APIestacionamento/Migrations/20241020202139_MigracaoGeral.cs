@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace APIestacionamento.Migrations
 {
     /// <inheritdoc />
-    public partial class CriacaoFinal : Migration
+    public partial class MigracaoGeral : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

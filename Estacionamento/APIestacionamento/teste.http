@@ -6,7 +6,7 @@ POST http://localhost:5122/api/vagas/cadastrar
 Content-Type: application/json
 
 {
-    "numero": "A1"
+    "numero": "A3"
 }
 
 ### Cadastrar carro
@@ -19,7 +19,7 @@ Content-Type: application/json
     "marca": "Suzuki",
     "modelo": "Gran Vitara",
     "cor": "Preto",
-    "vagaId": 1
+    "vagaId": 2
 }
 
 ### Cadastrar Cliente
@@ -30,7 +30,7 @@ Content-Type: application/json
     "nome": "João",
     "telefone": "+12341243456",
     "email": "joao@gmail.com",
-    "CarroId": 1
+    "CarroId": 2
 }
 
 ### Gerar um recibo
@@ -38,8 +38,8 @@ POST http://localhost:5122/api/recibos/cadastrar
 Content-Type: application/json
 
 {
-  "clienteId": 1,
-  "carroId": 1
+  "clienteId": 2,
+  "carroId": 2
 }
 
 ### Listar vagas
@@ -55,13 +55,11 @@ GET http://localhost:5122/api/clientes/listar
 GET http://localhost:5122/api/recibos/listar
 
 ### Buscar um carro pelo id
-GET http://localhost:5122/api/carros/buscar/3
+GET http://localhost:5122/api/carros/buscar/1
 
-### Deletar um carro pelo id
-DELETE  http://localhost:5122/api/carros/deletar/1
 
 ### Alterar carro
-PUT http://localhost:5122/api/carros/alterar/1
+PUT http://localhost:5122/api/carros/alterar/2
 Content-Type: application/json
 
 {
@@ -70,3 +68,5 @@ Content-Type: application/json
     "modelo": "Montana",
     "cor": "Branco"
 }
+### Deletar um carro pelo id
+DELETE  http://localhost:5122/api/carros/deletar/1
