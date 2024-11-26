@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIestacionamento.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20241020021659_MigracaoGeral")]
+    [Migration("20241020202139_MigracaoGeral")]
     partial class MigracaoGeral
     {
         /// <inheritdoc />

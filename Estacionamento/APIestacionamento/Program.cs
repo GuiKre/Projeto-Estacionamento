@@ -32,7 +32,7 @@ app.MapPost("/api/carros/cadastrar", ([FromBody] Carro carro,
 
     if (vaga == null)
     {
-        return Results.BadRequest("A vaga espeificada não existe.");
+        return Results.BadRequest("A vaga especificada não existe.");
     }
 
     ctx.Carros.Add(carro);
@@ -89,12 +89,23 @@ app.MapPost("/api/recibos/cadastrar", ([FromBody] Recibo recibo,
 app.MapGet("/api/carros/buscar/{id}", ([FromRoute] int id,
     [FromServices] AppDataContext ctx) =>
 {
-    Carro? carro = ctx.Carros.Find(id);
+    // Inclui o cliente relacionado ao carro
+    var carro = ctx.Carros
+        .Include(c => c.cliente) // Inclui o cliente associado
+        .FirstOrDefault(c => c.CarroId == id);
+
     if (carro is null)
     {
         return Results.NotFound();
     }
+
     return Results.Ok(carro);
+    // Carro? carro = ctx.Carros.Find(id);
+    // if (carro is null)
+    // {
+    //     return Results.NotFound();
+    // }
+    // return Results.Ok(carro);
 });
 
 app.MapGet("/api/carros/listar", ([FromServices] AppDataContext ctx) =>

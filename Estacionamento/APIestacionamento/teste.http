@@ -1,19 +1,20 @@
 ### Testar a raiz do projeto
 GET http://localhost:5122
 
-### Cadastrar Cliente
-POST http://localhost:5122/api/clientes/cadastrar
+### Cadastrar vaga
+POST http://localhost:5122/api/vagas/cadastrar
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
     "nome": "igor hey matos",
     "telefone": "+12341243456",
     "email": "teste@gmail.com",
     "CarroId": 11
+=======
+    "numero": "A3"
+>>>>>>> 72b27733d65e3b1e813e83e3e23e22db5cd0d952
 }
-
-### Listar Clientes
-GET http://localhost:5122/api/clientes/listar
 
 ### Cadastrar carro
 POST http://localhost:5122/api/carros/cadastrar
@@ -24,18 +25,50 @@ Content-Type: application/json
     "placa": "ATR2655",
     "marca": "Suzuki",
     "modelo": "Gran Vitara",
+<<<<<<< HEAD
     "cor": "Branco",
     "vagaId": 31
+=======
+    "cor": "Preto",
+    "vagaId": 2
+>>>>>>> 72b27733d65e3b1e813e83e3e23e22db5cd0d952
 }
+
+### Cadastrar Cliente
+POST http://localhost:5122/api/clientes/cadastrar
+Content-Type: application/json
+
+{
+    "nome": "João",
+    "telefone": "+12341243456",
+    "email": "joao@gmail.com",
+    "CarroId": 2
+}
+
+### Gerar um recibo
+POST http://localhost:5122/api/recibos/cadastrar
+Content-Type: application/json
+
+{
+  "clienteId": 2,
+  "carroId": 2
+}
+
+### Listar vagas
+GET http://localhost:5122/api/vagas/listar
 
 ### Listar carros
 GET http://localhost:5122/api/carros/listar
 
+### Listar clientes
+GET http://localhost:5122/api/clientes/listar
+
+### Listar recibos
+GET http://localhost:5122/api/recibos/listar
+
 ### Buscar um carro pelo id
 GET http://localhost:5122/api/carros/buscar/1
 
-### Deletar um carro pelo id
-DELETE  http://localhost:5122/api/carros/deletar/2
 
 ### Alterar carro
 PUT http://localhost:5122/api/carros/alterar/2
@@ -47,6 +80,7 @@ Content-Type: application/json
     "modelo": "Montana",
     "cor": "Branco"
 }
+<<<<<<< HEAD
 
 ### Cadastrar vaga
 POST http://localhost:5122/api/vagas/cadastrar
@@ -71,3 +105,7 @@ Content-Type: application/json
 
 ### Listar todos os recibos
 GET http://localhost:5122/api/recibos/listar
+=======
+### Deletar um carro pelo id
+DELETE  http://localhost:5122/api/carros/deletar/1
+>>>>>>> 72b27733d65e3b1e813e83e3e23e22db5cd0d952
