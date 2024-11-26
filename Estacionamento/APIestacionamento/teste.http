@@ -6,10 +6,10 @@ POST http://localhost:5122/api/clientes/cadastrar
 Content-Type: application/json
 
 {
-    "nome": "malaquias",
+    "nome": "igor hey matos",
     "telefone": "+12341243456",
     "email": "teste@gmail.com",
-    "CarroId": 10
+    "CarroId": 11
 }
 
 ### Listar Clientes
@@ -24,8 +24,8 @@ Content-Type: application/json
     "placa": "ATR2655",
     "marca": "Suzuki",
     "modelo": "Gran Vitara",
-    "cor": "Preto",
-    "vagaId": 29
+    "cor": "Branco",
+    "vagaId": 31
 }
 
 ### Listar carros
@@ -53,7 +53,7 @@ POST http://localhost:5122/api/vagas/cadastrar
 Content-Type: application/json
 
 {
-    "numero": "A1"
+    "numero": "B1"
 }
 
 ### Listar vagas
@@ -65,8 +65,8 @@ POST http://localhost:5122/api/recibos/cadastrar
 Content-Type: application/json
 
 {
-  "clienteId": 4,
-  "carroId": 9
+  "clienteId": 6,
+  "carroId": 11
 }
 
 ### Listar todos os recibos

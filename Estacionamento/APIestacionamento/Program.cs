@@ -12,6 +12,14 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.WriteIndented = true;
 });
 
+builder.Services.AddCors(options =>
+    options.AddPolicy("Acesso Total",
+        configs => configs
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod())
+);
+
 builder.Services.AddDbContext<AppDataContext>();
 var app = builder.Build();
 
@@ -179,4 +187,7 @@ app.MapGet("/api/vagas/listar", ([FromServices] AppDataContext ctx) =>
     }
     return Results.NotFound();
 });
+
+app.UseCors("Acesso Total");
+
 app.Run();
