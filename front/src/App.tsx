@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import VagaListar from "./components/pages/vaga/VagaListar";
+import VagaCadastrar from './components/pages/vaga/VagaCadastrar';
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
         <Routes>
           <Route path='/' element={<VagaListar/>}/>
           <Route path='/pages/vagas/listar' element={<VagaListar/>}/>
-          {/* <Route path='/pages/vagas/cadastrar' element={<VagaCadastrar/>}/>
+          <Route path='/pages/vagas/cadastrar' element={<VagaCadastrar/>}/>
+          {/* 
           <Route path='/pages/vagas/consultar' element={<VagaConsultar/>}/>
           <Route path='/pages/vagas/alterar/:id' element={<VagaAlterar/>}/> */}
         </Routes>
