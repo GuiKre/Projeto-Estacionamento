@@ -13,7 +13,7 @@ public class Carro
 
     public int VagaId {get; set; }
     [JsonIgnore]
-    public Vaga? vaga {get; set; }
+    public Vaga? Vaga {get; set; }
 
     public Cliente? cliente {get; set; }
     

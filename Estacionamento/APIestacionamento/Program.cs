@@ -37,7 +37,7 @@ app.MapPost("/api/carros/cadastrar", ([FromBody] Carro carro,
 
     ctx.Carros.Add(carro);
     ctx.SaveChanges();
-    return Results.Created("", carro);
+    return Results.Created($"/api/carros/{carro.CarroId}", carro);
 });
 
 app.MapPost("/api/clientes/cadastrar", ([FromBody] Cliente cliente,
@@ -110,13 +110,13 @@ app.MapGet("/api/carros/buscar/{id}", ([FromRoute] int id,
 
 app.MapGet("/api/carros/listar", ([FromServices] AppDataContext ctx) =>
 {
-    var carrosComClientes = ctx.Carros
-        .Include(c => c.cliente)
+    var carrosComVagas = ctx.Carros
+        .Include(c => c.vaga)  // Inclui a vaga associada
         .ToList();
 
-    if (carrosComClientes.Any())
+    if (carrosComVagas.Any())
     {
-        return Results.Ok(carrosComClientes);
+        return Results.Ok(carrosComVagas);
     }
 
     return Results.NotFound();

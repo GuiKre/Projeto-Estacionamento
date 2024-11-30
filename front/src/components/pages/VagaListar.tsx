@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Vaga } from "../../models/Vaga";
+import { Vaga } from "../models/Vaga";
 
 function VagaListar(){
     const [vagas, setVagas] = useState<Vaga[]>([]);

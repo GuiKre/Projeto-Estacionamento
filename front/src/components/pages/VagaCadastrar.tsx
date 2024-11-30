@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Vaga } from "../../models/Vaga";
+import { Vaga } from "../models/Vaga";
 import axios from "axios";
 
 function VagaCadastrar(){
