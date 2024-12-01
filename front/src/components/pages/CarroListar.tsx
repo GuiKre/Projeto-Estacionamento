@@ -49,7 +49,7 @@ function CarroListar() {
                             <td>{carro.marca}</td>
                             <td>{carro.modelo}</td>
                             <td>{carro.cor}</td>
-                            <td>{carro.vaga?.vagaId}</td>
+                            <td>{carro.vaga?.numero}</td>
                             <td><button onClick={() => deletar(carro.carroId!)}>Deletar</button></td>
                             <td><Link to={`/pages/carros/alterar/${carro.carroId}`}>Alterar Carro</Link></td>
                         </tr>
