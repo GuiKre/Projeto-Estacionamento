@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Vaga } from "../models/Vaga";
-import { Carro } from "../models/Carro";
 import { Cliente } from "../models/Cliente";
 import axios from 'axios';
 
 function ClienteCadastro(){
-    const [clientes, setClientes] = useState<Cliente[]>([]);
+    const [, setClientes] = useState<Cliente[]>([]);
     const [clienteId, setClienteId] = useState(0);
     const [nome, setNome] = useState<string>('');
     const [telefone, setTelefone] = useState<string>('');
     const [email, setEmail] = useState<string>('');
-    const [carroId, setCarroId] = useState(0);
+    const [carroId] = useState(0);
 
     useEffect(() => {
         axios.get<Cliente[]>("http://localhost:5122/api/clientes/listar")

@@ -7,6 +7,8 @@ import CarroCadastrar from './components/pages/CarroCadastrar';
 import CarroListar from './components/pages/CarroListar';
 import ClienteCadastrar from './components/pages/ClienteCadastrar';
 import ClienteListar from './components/pages/ClienteListar';
+import ReciboCadastrar from './components/pages/ReciboCadastrar';
+import ReciboListar from './components/pages/ReciboListar';
 
 function App() {
   return (
@@ -38,6 +40,12 @@ function App() {
           <li>
             <Link to="/pages/ClienteListar">Listar Clientes</Link>
           </li>
+          <li>
+            <Link to="/pages/ReciboCadastrar">Gerar Recibos</Link>
+          </li>
+          <li>
+            <Link to="/pages/ReciboListar">Listar Recibos</Link>
+          </li>
         </ul>
         </nav>
 
@@ -49,6 +57,8 @@ function App() {
           <Route path='/pages/CarroListar' element={<CarroListar/>}/>
           <Route path='/pages/ClienteCadastrar' element={<ClienteCadastrar/>}/>
           <Route path='/pages/ClienteListar' element={<ClienteListar/>}/>
+          <Route path='/pages/ReciboCadastrar' element={<ReciboCadastrar/>}/>
+          <Route path='/pages/ReciboListar' element={<ReciboListar/>}/>
 
           {/* 
           <Route path='/pages/vagas/consultar' element={<VagaConsultar/>}/>

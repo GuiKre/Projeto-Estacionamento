@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Cliente } from "../models/Cliente";
-import axios from 'axios';
 
 const ClienteListar = () => {
     const [clientes, setClientes] = useState<Cliente[]>([]);
