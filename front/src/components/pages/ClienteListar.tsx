@@ -23,6 +23,7 @@ const ClienteListar = () => {
                         <th>Nome</th>
                         <th>Telefone</th>
                         <th>Email</th>
+                        <th>Carro Id</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +33,7 @@ const ClienteListar = () => {
                             <td>{cliente.nome}</td>
                             <td>{cliente.telefone}</td>
                             <td>{cliente.email}</td>
+                            <td>{cliente.carro?.carroId}</td>
                         </tr>
                     ))}
                 </tbody>
