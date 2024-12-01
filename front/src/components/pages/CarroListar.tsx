@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 function CarroListar() {
     const [carros, setCarros] = useState<Carro[]>([]);
+    const [idBusca, setIdBusca] = useState<number | string>('');
+    const [carroBuscado, setCarroBuscado] = useState<Carro | null>(null);
 
     useEffect(() => {
         fetch("http://localhost:5122/api/carros/listar")
@@ -26,13 +28,52 @@ function CarroListar() {
     }
     }
 
+    function buscarCarro() {
+        if (idBusca) {
+            fetch(`http://localhost:5122/api/carros/buscar/${idBusca}`)
+                .then(resposta => resposta.json())
+                .then(carro => {
+                    setCarroBuscado(carro || null);
+                })
+                .catch(erro => console.error("Erro ao buscar o carro:", erro));
+        }
+    }
+
+
     return (
         <div>
             <h1>Lista de Carros</h1>
+            {/* Campo de busca */}
+            <div>
+                <input 
+                    type="number" 
+                    placeholder="Buscar por ID"
+                    value={idBusca}
+                    onChange={(e) => setIdBusca(e.target.value)}
+                />
+                <button onClick={buscarCarro}>Buscar</button>
+            </div>
+
+            {/* Exibe carro buscado */}
+            {carroBuscado ? (
+                <div>
+                    <h2>Carro Encontrado</h2>
+                    <p>ID: {carroBuscado.carroId}</p>
+                    <p>Placa: {carroBuscado.placa}</p>
+                    <p>Marca: {carroBuscado.marca}</p>
+                    <p>Modelo: {carroBuscado.modelo}</p>
+                    <p>Cor: {carroBuscado.cor}</p>
+                    <p>Vaga: {carroBuscado.vaga?.numero}</p>
+                </div>
+            ) : (
+                <p>{idBusca ? "Carro não encontrado." : ""}</p>
+            )}
+
             {carros.length > 0 ? (
             <table border={1}>
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Placa</th>
                         <th>Marca</th>
                         <th>Modelo</th>
@@ -45,6 +86,7 @@ function CarroListar() {
                 <tbody>
                     {carros.map(carro => (
                         <tr key={carro.carroId}>
+                            <td>{carro.carroId}</td>
                             <td>{carro.placa}</td>
                             <td>{carro.marca}</td>
                             <td>{carro.modelo}</td>

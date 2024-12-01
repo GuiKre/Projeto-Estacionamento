@@ -32,9 +32,9 @@ function App() {
           <li>
             <Link to="/pages/CarroListar">Listar Carros</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/pages/vagas/consultar">Consultar Vagas</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/pages/ClienteCadastrar">Cadastrar Clientes</Link>
           </li>

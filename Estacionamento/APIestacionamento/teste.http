@@ -23,9 +23,7 @@ Content-Type: application/json
     "marca": "Suzuki",
     "modelo": "Gran Vitara",
     "cor": "Branco",
-    "vagaId": 31
-    "cor": "Preto",
-    "vagaId": 2
+    "vagaId": 37
 }
 
 ### Cadastrar Cliente
@@ -36,7 +34,7 @@ Content-Type: application/json
     "nome": "João",
     "telefone": "+12341243456",
     "email": "joao@gmail.com",
-    "CarroId": 2
+    "CarroId": 1
 }
 
 ### Gerar um recibo
@@ -80,7 +78,7 @@ POST http://localhost:5122/api/vagas/cadastrar
 Content-Type: application/json
 
 {
-    "numero": "B1"
+    "numero": "B20"
 }
 
 ### Listar vagas

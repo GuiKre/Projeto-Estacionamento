@@ -25,7 +25,7 @@ function CarroAlterar(){
                 buscarVagas();
             })
         }
-    }, []);
+    }, [id]);
 
     function buscarVagas(){
         axios.get<Vaga[]>("http://localhost:5122/api/vagas/listar")
