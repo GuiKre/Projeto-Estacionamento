@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Vaga } from "../models/Vaga";
 
 function VagaListar(){
@@ -24,7 +23,7 @@ function VagaListar(){
                     <tr>
                         <th>Vaga Id</th>
                         <th>Número</th>
-                        <th>Carro Id</th>
+                        {/* <th>Carro Id</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +31,7 @@ function VagaListar(){
                         <tr key={vaga.vagaId}>
                             <td>{vaga.vagaId}</td>
                             <td>{vaga.numero}</td>
-                            <td>{vaga.carro?.carroId || "Sem carro"}</td>
+                            {/* <td>{vaga.carro?.carroId || "Sem carro"}</td> */}
                         </tr>
                     ))}
                 </tbody>
