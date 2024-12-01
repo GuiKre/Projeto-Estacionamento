@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Vaga } from "../models/Vaga";
+import { Vaga } from "../../models/Vaga";
+import React from "react";
 
 function VagaListar(){
     const [vagas, setVagas] = useState<Vaga[]>([]);
@@ -32,7 +33,7 @@ function VagaListar(){
                         <tr key={vaga.vagaId}>
                             <td>{vaga.vagaId}</td>
                             <td>{vaga.numero}</td>
-                            <td>{vaga.carro?.carroId}</td>
+                            <td>{vaga.carro?.placa}</td>
                         </tr>
                     ))}
                 </tbody>

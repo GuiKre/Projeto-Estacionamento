@@ -33,7 +33,7 @@ function CarroListar() {
                             <td>{carro.marca}</td>
                             <td>{carro.modelo}</td>
                             <td>{carro.cor}</td>
-                            <td>{carro.vaga?.numero}</td>
+                            <td>{carro.vaga?.vagaId}</td>
                         </tr>
                     ))}
                 </tbody>

@@ -61,7 +61,7 @@ function CarroCadastrar() {
                     <select value={vagaId} onChange={(e) => setVagaId(parseInt(e.target.value))}>
                         <option value={0}>Selecione a vaga</option>
                         {vagas.map(vaga => (
-                            <option key={vaga.vagaId} value={vaga.vagaId}>{vaga.numero}</option>
+                            <option key={vaga.vagaId} value={vaga.vagaId}>{vaga.vagaId}</option>
                         ))}
                     </select>
                 </div>
