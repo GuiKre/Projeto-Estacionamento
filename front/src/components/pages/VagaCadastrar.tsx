@@ -18,8 +18,8 @@ function VagaCadastrar(){
         e.preventDefault();
 
         const vaga : Vaga = {
-            vagaId : vagaId,
-            numero : numero,
+            vagaId: vagaId,
+            numero: numero,
         }
 
         fetch("http://localhost:5122/api/vagas/cadastrar", {

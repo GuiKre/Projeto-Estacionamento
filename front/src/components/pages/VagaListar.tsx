@@ -24,7 +24,7 @@ function VagaListar(){
                     <tr>
                         <th>Vaga Id</th>
                         <th>Número</th>
-                        <th>Carro</th>
+                        <th>Carro Id</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +32,7 @@ function VagaListar(){
                         <tr key={vaga.vagaId}>
                             <td>{vaga.vagaId}</td>
                             <td>{vaga.numero}</td>
-                            <td>{vaga.carro?.placa || "Sem carro"}</td>
+                            <td>{vaga.carro?.carroId || "Sem carro"}</td>
                         </tr>
                     ))}
                 </tbody>
