@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Carro } from "../models/Carro";
+import axios from "axios";
 
 function CarroListar() {
     const [carros, setCarros] = useState<Carro[]>([]);
@@ -11,6 +12,18 @@ function CarroListar() {
                 setCarros(carros);
             });
     }, []);
+
+    function deletar(id : number){
+        console.log("ID enviado para exclusão:", id);
+
+    if (window.confirm("Tem certeza que deseja deletar este carro?")) {
+        axios.delete(`http://localhost:5122/api/carros/deletar/${id}`)
+            .then(() => {
+                setCarros(carros.filter(carro => carro.carroId !== id));
+            })
+            .catch(erro => console.error("Erro ao deletar o carro:", erro));
+    }
+    }
 
     return (
         <div>
@@ -24,6 +37,7 @@ function CarroListar() {
                         <th>Modelo</th>
                         <th>Cor</th>
                         <th>Vaga</th>
+                        <th>Deletar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +48,7 @@ function CarroListar() {
                             <td>{carro.modelo}</td>
                             <td>{carro.cor}</td>
                             <td>{carro.vaga?.vagaId}</td>
+                            <td><button onClick={() => deletar(carro.carroId!)}>Deletar</button></td>
                         </tr>
                     ))}
                 </tbody>

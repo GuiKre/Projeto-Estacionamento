@@ -98,5 +98,6 @@ Content-Type: application/json
 
 ### Listar todos os recibos
 GET http://localhost:5122/api/recibos/listar
+
 ### Deletar um carro pelo id
-DELETE  http://localhost:5122/api/carros/deletar/1
+DELETE  http://localhost:5122/api/carros/deletar/6
