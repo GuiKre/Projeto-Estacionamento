@@ -9,6 +9,7 @@ import ClienteCadastrar from './components/pages/ClienteCadastrar';
 import ClienteListar from './components/pages/ClienteListar';
 import ReciboCadastrar from './components/pages/ReciboCadastrar';
 import ReciboListar from './components/pages/ReciboListar';
+import CarroAlterar from './components/pages/CarroAlterar';
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
           <Route path='/pages/ClienteListar' element={<ClienteListar/>}/>
           <Route path='/pages/ReciboCadastrar' element={<ReciboCadastrar/>}/>
           <Route path='/pages/ReciboListar' element={<ReciboListar/>}/>
+          <Route path='/pages/carros/alterar/:id' element={<CarroAlterar/>}/>
 
           {/* 
           <Route path='/pages/vagas/consultar' element={<VagaConsultar/>}/>

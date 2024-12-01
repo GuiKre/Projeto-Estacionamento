@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Carro } from "../models/Carro";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function CarroListar() {
     const [carros, setCarros] = useState<Carro[]>([]);
@@ -38,6 +39,7 @@ function CarroListar() {
                         <th>Cor</th>
                         <th>Vaga</th>
                         <th>Deletar</th>
+                        <th>Alterar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +51,7 @@ function CarroListar() {
                             <td>{carro.cor}</td>
                             <td>{carro.vaga?.vagaId}</td>
                             <td><button onClick={() => deletar(carro.carroId!)}>Deletar</button></td>
+                            <td><Link to={`/pages/carros/alterar/${carro.carroId}`}>Alterar Carro</Link></td>
                         </tr>
                     ))}
                 </tbody>
